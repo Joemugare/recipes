@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Recipe Sharing Platform</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a> |
+            <a href="{{ url_for('create_recipe') }}">Create Recipe</a>
+        </nav>
+    </header>
+
+    <section id="recipes">
+        <h2>Recipes:</h2>
+        <ul>
+            {% for recipe in recipes %}
+            <li>
+                <h3><a href="{{ url_for('recipe', recipe_id=recipe.id) }}">{{ recipe.title }}</a></h3>
+                <p>{{ recipe.content }}</p>
+                <p>Posted on: {{ recipe.date_posted }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
